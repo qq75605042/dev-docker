@@ -1,3 +1,6 @@
-app/*
+app/laratrust/
+app/laravel-admin/
+app/laravel-demo/
+app/yd_laravel/
 services/mysql/datadir/*
 services/nginx/logs/*
