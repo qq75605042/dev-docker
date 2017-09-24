@@ -1,13 +1,3 @@
-app/laratrust/
-app/laravel-admin/
-app/laravel-demo/
-app/yd_laravel/
-services/mysql/datadir/admin/
-services/mysql/datadir/l*
-services/mysql/datadir/m*
-services/mysql/datadir/p*
-services/mysql/datadir/s*
-services/mysql/datadir/c*
-services/mysql/datadir/i*
-services/mysql/datadir/p*
+app/larave55/
+services/mysql/datadir
 services/nginx/logs/*

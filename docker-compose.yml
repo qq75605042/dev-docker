@@ -2,13 +2,14 @@ version: '2'
 
 services:
   mysql:
-    image: mysql
+    build:
+      context: ./services/mysql
+      dockerfile: Dockerfile
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "root"
     volumes:
-      - ./services/mysql/conf:/etc/mysql/conf.d
       - ./services/mysql/datadir:/var/lib/mysql
 
   php:
@@ -16,10 +17,12 @@ services:
       context: ./services/php
       dockerfile: Dockerfile
     volumes:
-      - ./app:/var/www/html/
+      - ./app:/var/www/html
 
   nginx:
-    image: nginx:1.12.1
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     depends_on:
@@ -29,7 +32,6 @@ services:
     volumes:
       - ./services/nginx/sites:/etc/nginx/conf.d
       - ./services/nginx/logs:/var/log/nginx
-    command: /bin/bash -c "nginx -g 'daemon off;'"
 
   tools:
     build:
@@ -39,17 +41,7 @@ services:
       - php
     tty: true
 
-  node:
-    build:
-      context: ./services/node
-      dockerfile: Dockerfile
-    volumes_from:
-      - php
-    tty: true
-
   redis:
-    image: redis:3.2.10
+    image: redis:3.2
     ports:
       - "6379:6379"
-    volumes_from:
-      - php
